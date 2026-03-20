@@ -6,8 +6,8 @@
 }
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ffffff;
 }
 
 body {
@@ -17,17 +17,51 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Custom Text Stroke Utility */
+/* ── Text Stroke Utility ── */
 .text-stroke {
-  -webkit-text-stroke: 1px currentColor;
+  -webkit-text-stroke: 2px white;
   color: transparent;
 }
 
-/* Hide scrollbar but keep functionality */
+/* ── Hide scrollbar but keep functionality ── */
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+/* ── Thin orange-tinted custom scrollbar (opt-in) ── */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 99px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 107, 0, 0.45);
+  border-radius: 99px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 107, 0, 0.7);
+}
+
+/* ── Floating hero orbit glow ── */
+@keyframes orbit-glow {
+  0%, 100% { opacity: 0.15; transform: scale(1.05); }
+  50%       { opacity: 0.28; transform: scale(1.12); }
+}
+.hero-glow {
+  animation: orbit-glow 4s ease-in-out infinite;
+}
+
+/* ── Subtle pulse for live dot ── */
+@keyframes live-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+.live-dot {
+  animation: live-pulse 1.8s ease-in-out infinite;
 }

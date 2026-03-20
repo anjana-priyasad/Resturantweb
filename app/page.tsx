@@ -6,13 +6,14 @@ import { AnimatePresence, motion } from "framer-motion";
 import { dishes } from "../data/data";
 import LeftSection from "../components/LeftSection";
 import RightSidebar from "../components/RightSidebar";
+import Logo from "../components/Logo";
 
 export default function Home() {
   const [currentDish, setCurrentDish] = useState(dishes[0]);
 
   return (
     <main className="relative h-screen w-full overflow-hidden bg-black text-white flex">
-      {/* Dynamic Background */}
+      {/* ── Dynamic blurred background ── */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.div
@@ -27,16 +28,23 @@ export default function Home() {
               src={currentDish.image}
               alt="Background"
               fill
-              className="object-cover opacity-60 blur-md"
+              className="object-cover opacity-50 blur-md"
               priority
             />
-            {/* Overlay Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+            {/* Deep left-side gradient so text is always readable */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/20" />
+            {/* Bottom gradient for dock area */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* Content Layer */}
+      {/* ── Restaurant Logo — fixed top-left overlay ── */}
+      <div className="absolute top-6 left-10 z-50">
+        <Logo />
+      </div>
+
+      {/* ── Main content layer ── */}
       <div className="relative z-10 flex w-full h-full max-w-[1920px] mx-auto">
         <LeftSection
           currentDish={currentDish}
