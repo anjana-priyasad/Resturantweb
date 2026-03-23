@@ -52,7 +52,7 @@ export default function LeftSection({ currentDish, dishes, onDishSelect, rightSi
             </motion.span>
 
             {/* Large title */}
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[0.92] mb-6 flex flex-col items-center md:items-start">
+            <h1 className="text-4xl min-[400px]:text-5xl md:text-7xl font-black tracking-tight leading-[0.92] mb-6 flex flex-col items-center md:items-start">
               <motion.span
                 initial={{ opacity: 0, x: -18 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -107,28 +107,65 @@ export default function LeftSection({ currentDish, dishes, onDishSelect, rightSi
         </AnimatePresence>
       </div>
 
-      {/* ── Hero Dish Image (Mobile inline, Desktop absolute) ── */}
-      <div className="relative z-0 mt-8 mb-6 md:mt-0 md:mb-0 flex justify-center w-full md:absolute md:top-1/2 md:-translate-y-[55%] md:right-[2%] md:w-[430px] md:h-[430px] pointer-events-none">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentDish.id}
-            initial={{ opacity: 0, x: 80, rotate: 20, scale: 0.85 }}
-            animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
-            exit={{ opacity: 0, x: -60, rotate: -15, scale: 0.9 }}
-            transition={{ type: "spring", stiffness: 80, damping: 20 }}
-            className="relative w-[300px] h-[300px] md:w-full md:h-full -mt-10 md:mt-0"
+      {/* ── Hero Dish Image (Mobile Swipeable, Desktop absolute) ── */}
+      <div className="relative z-20 mt-8 mb-4 md:mt-0 md:mb-0 flex flex-col items-center justify-center w-full md:absolute md:top-1/2 md:-translate-y-[55%] md:right-[2%] md:w-[430px] md:h-[430px] pointer-events-auto md:pointer-events-none">
+        
+        {/* Container for Arrows + Image to prevent screen overflow */}
+        <div className="relative w-[90vw] h-[90vw] max-w-[340px] max-h-[340px] md:max-w-none md:max-h-none md:w-full md:h-full flex items-center justify-center -mt-6 md:mt-0">
+          
+          {/* Mobile Left Glass Arrow */}
+          <button 
+            onClick={prev} 
+            className="md:hidden absolute -left-2 z-30 p-2.5 rounded-full bg-white/20 backdrop-blur-md border border-white/20 shadow-xl hover:bg-white/30 active:scale-95 transition-all text-white pointer-events-auto"
           >
-            {/* ambient glow */}
-            <div className="absolute inset-[-10%] rounded-full bg-orange-500/15 blur-3xl" />
-            <Image
-              src={currentDish.image}
-              alt={currentDish.title}
-              fill
-              className="object-cover rounded-full shadow-2xl shadow-black/70 ring-2 ring-white/10"
-              priority
-            />
-          </motion.div>
-        </AnimatePresence>
+            <ChevronLeft size={24} />
+          </button>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentDish.id}
+              initial={{ opacity: 0, x: 80, rotate: 20, scale: 0.85 }}
+              animate={{ opacity: 1, x: 0, rotate: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -60, rotate: -15, scale: 0.9 }}
+              transition={{ type: "spring", stiffness: 80, damping: 20 }}
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.2}
+              onDragEnd={(e, { offset }) => {
+                const swipe = offset.x;
+                if (swipe < -40) next();
+                else if (swipe > 40) prev();
+              }}
+              className="relative w-full h-full cursor-grab active:cursor-grabbing md:cursor-default"
+            >
+              {/* ambient glow */}
+              <div className="absolute inset-[-10%] rounded-full bg-orange-500/15 blur-3xl pointer-events-none" />
+              <Image
+                src={currentDish.image}
+                alt={currentDish.title}
+                fill
+                className="object-cover rounded-full shadow-2xl shadow-black/70 ring-2 ring-white/10 pointer-events-none"
+                priority
+              />
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Mobile Right Glass Arrow */}
+          <button 
+            onClick={next} 
+            className="md:hidden absolute -right-2 z-30 p-2.5 rounded-full bg-white/20 backdrop-blur-md border border-white/20 shadow-xl hover:bg-white/30 active:scale-95 transition-all text-white pointer-events-auto"
+          >
+            <ChevronRight size={24} />
+          </button>
+
+        </div>
+
+        {/* Swipe Indicator (Hint) strictly for mobile */}
+        <div className="md:hidden flex items-center gap-1.5 mt-8 mb-2 z-20">
+          <span className="w-1.5 h-1.5 rounded-full bg-white/30" />
+          <span className="w-8 h-1.5 rounded-full bg-orange-500/80 animate-pulse shadow-[0_0_8px_rgba(249,115,22,0.6)]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-white/30" />
+        </div>
       </div>
 
       {/* ── Mobile Glass Card ── */}
