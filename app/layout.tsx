@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteName: "SAVORIA",
     images: [
       {
-        url: "/opengraph-image.png", // Next.js will resolve this from the public/ folder if explicitly listed
+        url: "/opengraph-image.jpg", // Next.js will resolve this from the public/ folder if explicitly listed
         width: 1200,
         height: 630,
         alt: "SAVORIA Fine Dining Menu",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "SAVORIA | Premium Food Showcase",
     description: "Experience SAVORIA Fine Dining. Discover our premium curated menu.",
-    images: ["/opengraph-image.png"], // Reuses OG image or you can use a separate /twitter-image.png
+    images: ["/opengraph-image.jpg"], // Reuses OG image or you can use a separate /twitter-image.png
   },
   icons: {
     icon: "/favicon.ico",
