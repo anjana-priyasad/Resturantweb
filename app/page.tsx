@@ -12,7 +12,7 @@ export default function Home() {
   const [currentDish, setCurrentDish] = useState(dishes[0]);
 
   return (
-    <main className="relative h-screen w-full overflow-hidden bg-black text-white flex">
+    <main className="relative min-h-screen md:h-screen w-full overflow-x-hidden overflow-y-auto md:overflow-hidden bg-black text-white flex flex-col">
       {/* ── Dynamic blurred background ── */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
@@ -40,18 +40,18 @@ export default function Home() {
       </div>
 
       {/* ── Restaurant Logo — fixed top-left overlay ── */}
-      <div className="absolute top-6 left-10 z-50">
+      <div className="absolute top-4 left-4 md:top-6 md:left-10 z-[60]">
         <Logo />
       </div>
 
       {/* ── Main content layer ── */}
-      <div className="relative z-10 flex w-full h-full max-w-[1920px] mx-auto">
+      <div className="relative z-10 flex flex-col md:flex-row w-full md:h-full min-h-screen max-w-[1920px] mx-auto pb-[100px] md:pb-0">
         <LeftSection
           currentDish={currentDish}
           dishes={dishes}
           onDishSelect={setCurrentDish}
+          rightSidebar={<RightSidebar currentDish={currentDish} />}
         />
-        <RightSidebar currentDish={currentDish} />
       </div>
     </main>
   );

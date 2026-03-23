@@ -2,7 +2,7 @@
 
 export default function Logo() {
   return (
-    <div className="flex items-center gap-3 select-none">
+    <div className="flex items-center gap-2 md:gap-3 select-none scale-[0.85] md:scale-100 origin-top-left">
       {/* Flame / fork icon mark */}
       <div className="relative w-10 h-10 flex items-center justify-center">
         {/* Outer glow */}

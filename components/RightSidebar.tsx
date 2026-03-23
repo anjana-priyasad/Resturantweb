@@ -80,9 +80,9 @@ export default function RightSidebar({ currentDish }: RightSidebarProps) {
   const [liked, setLiked] = useState(false);
 
   return (
-    <div className="w-[36%] h-full flex flex-col justify-center p-8 relative z-20">
+    <div className="w-full h-full flex flex-col justify-center px-2 py-4 md:p-8 relative z-20 min-h-[550px] md:min-h-0">
       {/* Glassmorphism Card */}
-      <div className="bg-white/8 backdrop-blur-3xl border border-white/15 rounded-3xl p-7 h-[88%] flex flex-col w-full shadow-2xl shadow-black/40 relative overflow-hidden">
+      <div className="bg-white/8 backdrop-blur-3xl border border-white/15 rounded-3xl p-5 md:p-7 h-full md:h-[88%] flex flex-col w-full shadow-2xl shadow-black/40 relative overflow-hidden">
         {/* Subtle gradient shimmer */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-orange-500/5 pointer-events-none rounded-3xl" />
 
@@ -208,7 +208,7 @@ export default function RightSidebar({ currentDish }: RightSidebarProps) {
                     </div>
                     <div className="flex-1 min-w-0">
                       <h3 className="font-bold text-base text-white">{currentDish.chef}</h3>
-                      <p className="text-xs text-gray-400 italic truncate">"{currentDish.chefQuote}"</p>
+                      <p className="text-xs text-gray-400 italic truncate">&quot;{currentDish.chefQuote}&quot;</p>
                     </div>
                     <div className="flex flex-col items-end gap-1">
                       <span className="text-[10px] uppercase tracking-widest text-orange-400 font-semibold">Chef</span>
@@ -234,7 +234,7 @@ export default function RightSidebar({ currentDish }: RightSidebarProps) {
                 {/* Header */}
                 <div className="flex items-center justify-between mb-4 flex-shrink-0">
                   <div>
-                    <h3 className="font-bold text-base text-white">What's Inside</h3>
+                    <h3 className="font-bold text-base text-white">What&apos;s Inside</h3>
                     <p className="text-xs text-gray-500 mt-0.5">
                       {currentDish.ingredients.length} fresh ingredients
                     </p>

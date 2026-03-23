@@ -24,7 +24,7 @@ export default function BottomNav() {
   const pathname = usePathname();
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center justify-between md:justify-center w-full md:w-auto max-w-[400px] mx-auto gap-1 md:gap-2">
       {NAV_ITEMS.map(({ href, label, Icon, isMic }) => {
         const isActive = pathname === href;
 
