@@ -26,16 +26,16 @@ function StatBadge({
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.35 }}
-      className="flex items-center gap-2.5 bg-white/5 border border-white/10 rounded-2xl px-4 py-3 backdrop-blur-sm group hover:bg-white/10 hover:border-orange-500/30 transition-all duration-300"
+      className="flex flex-col min-[450px]:flex-row items-center justify-center min-[450px]:justify-start gap-1.5 min-[450px]:gap-2.5 bg-white/5 border border-white/10 rounded-2xl p-2 min-[450px]:px-4 min-[450px]:py-3 backdrop-blur-sm group hover:bg-white/10 hover:border-orange-500/30 transition-all duration-300 text-center min-[450px]:text-left"
     >
-      <span className="text-orange-400 group-hover:scale-110 transition-transform duration-300">
+      <span className="text-orange-400 group-hover:scale-110 transition-transform duration-300 flex-shrink-0">
         {icon}
       </span>
-      <div className="flex flex-col leading-tight">
-        <span className="text-[10px] uppercase tracking-widest text-gray-500 font-medium">
+      <div className="flex flex-col leading-tight items-center min-[450px]:items-start">
+        <span className="text-[8px] min-[450px]:text-[10px] uppercase tracking-wider min-[450px]:tracking-widest text-gray-500 font-medium">
           {label}
         </span>
-        <span className="text-sm font-bold text-white">{value}</span>
+        <span className="text-xs min-[450px]:text-sm font-bold text-white">{value}</span>
       </div>
     </motion.div>
   );

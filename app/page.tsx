@@ -39,8 +39,8 @@ export default function Home() {
         </AnimatePresence>
       </div>
 
-      {/* ── Restaurant Logo — fixed top-left overlay ── */}
-      <div className="absolute top-4 left-4 md:top-6 md:left-10 z-[60]">
+      {/* ── Restaurant Logo — Top Centered on Mobile, Top Left on Desktop ── */}
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-10 md:top-6 z-[60] w-max">
         <Logo />
       </div>
 
